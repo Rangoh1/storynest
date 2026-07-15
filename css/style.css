@@ -789,3 +789,48 @@ footer{
 
 }
 
+/* ===========================
+   Developer Panel
+=========================== */
+
+.developer-panel{
+
+    background:#FFF7ED;
+
+    border:2px dashed #F59E0B;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    margin:25px 0;
+
+    text-align:center;
+
+}
+
+.developer-panel h3{
+
+    color:#B45309;
+
+    margin-bottom:10px;
+
+}
+
+.developer-panel h2{
+
+    letter-spacing:8px;
+
+    font-size:2rem;
+
+    margin:10px 0;
+
+    color:#1E293B;
+
+}
+
+.developer-panel small{
+
+    color:#64748B;
+
+}
