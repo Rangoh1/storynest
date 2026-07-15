@@ -43,9 +43,7 @@ const terms = document.getElementById("terms").checked;
 
         localStorage.setItem("storynestUser", JSON.stringify(user));
 
-        alert("Account created successfully!");
-
-        window.location.href = "verify.html";
+window.location.href = "verify.html";
 
     });
 
