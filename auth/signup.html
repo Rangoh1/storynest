@@ -45,9 +45,10 @@
 
     <p>Join StoryNest and start sharing your experiences anonymously.</p>
 
-<form action="verify.html">
+<form id="signupForm">
     
 <input
+    id="alias"
     type="text"
     placeholder="Alias (Username)"
     required
@@ -55,17 +56,21 @@
 >
 
     <input
+        id="contact"
         type="text"
         placeholder="Email or Phone Number"
+        required
     >
 
     <input
+        id="password"
         type="password"
         placeholder="Password"
         required
     >
 
     <input
+    id="confirmPassword"
     type="password"
     placeholder="Confirm Password"
     required
@@ -75,7 +80,11 @@
 
     <label class="terms-check">
 
-    <input type="checkbox" required>
+    <input 
+    id="terms"
+    type="checkbox"
+     required
+     >
 
     I agree to the Community Guidelines and Privacy Policy.
 
