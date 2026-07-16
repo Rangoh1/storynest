@@ -137,3 +137,369 @@ if (verifyForm) {
     });
 
 }
+
+// ===============================
+// Share Story Button
+// ===============================
+
+const shareButton = document.getElementById("shareStoryBtn");
+
+if (shareButton) {
+
+    shareButton.addEventListener("click", function () {
+
+        const user = localStorage.getItem("storynestUser");
+
+        if (user) {
+
+            window.location.href = "create-story.html";
+
+        } else {
+
+            alert("Please sign in or create an account before sharing your story.");
+
+            window.location.href = "../auth/login.html";
+
+        }
+
+    });
+
+}
+
+// ===============================
+// Create Story
+// ===============================
+
+const storyForm = document.getElementById("storyForm");
+
+if (storyForm) {
+
+    storyForm.addEventListener("submit", function(event){
+
+        event.preventDefault();
+
+        const title = document.getElementById("storyTitle").value.trim();
+
+        const category = document.getElementById("storyCategory").value;
+
+        const content = document.getElementById("storyContent").value.trim();
+
+        const story = {
+
+            title,
+            category,
+            content,
+
+            author: "@You",
+
+            time: "Just now",
+
+            likes: 0,
+
+            comments: 0,
+
+            views: 0
+
+        };
+
+        // Get existing stories
+let stories = JSON.parse(localStorage.getItem("stories")) || [];
+
+// Add new story at the beginning
+stories.unshift(story);
+
+// Save all stories
+localStorage.setItem("stories", JSON.stringify(stories));
+
+// Return home
+window.location.href = "home.html";
+
+    });
+
+}
+
+// ===============================
+// Home Page
+// ===============================
+
+if (window.location.pathname.includes("home.html")) {
+
+    const container = document.getElementById("storiesContainer");
+
+    const stories =
+        JSON.parse(localStorage.getItem("stories")) || [];
+
+    if (stories.length === 0) {
+
+        container.innerHTML = `
+
+            <p>No stories have been published yet.</p>
+
+        `;
+
+    }
+
+    stories.forEach(function(story){
+
+        container.innerHTML += `
+
+        <div class="story-card">
+
+            <div class="story-header">
+
+                <div class="story-author">
+
+                    <div class="story-category">
+
+                        ${story.category}
+
+                    </div>
+
+                    <strong>${story.author}</strong>
+
+                    <span>${story.time}</span>
+
+                </div>
+
+            </div>
+
+            <h2 class="story-title">
+
+                ${story.title}
+
+            </h2>
+
+            <p class="story-preview">
+
+                ${story.content.substring(0,150)}...
+
+            </p>
+
+            <div class="story-footer">
+
+                <div class="story-stats">
+
+                    <span>❤️ ${story.likes}</span>
+
+                    <span>💬 ${story.comments}</span>
+
+                    <span>👁️ ${story.views}</span>
+
+                </div>
+
+            </div>
+
+           <a href="#" class="read-link"
+onclick="openStory(${stories.indexOf(story)})">
+
+    Continue Reading →
+
+</a>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+// ===============================
+// Open Story
+// ===============================
+
+function openStory(index){
+
+    localStorage.setItem("selectedStory", index);
+
+    window.location.href = "story.html";
+
+}
+
+// ===============================
+// Story Page
+// ===============================
+
+if (window.location.pathname.includes("story.html")) {
+
+    const stories =
+        JSON.parse(localStorage.getItem("stories")) || [];
+
+    const selected =
+        localStorage.getItem("selectedStory");
+
+    if (selected !== null && stories[selected]) {
+
+        const story = stories[selected];
+
+        // Like Button
+
+const likeButton = document.getElementById("storyLikes");
+
+likeButton.addEventListener("click", function () {
+
+    if (!story.liked) {
+
+        story.likes++;
+
+        story.liked = true;
+
+    } else {
+
+        story.likes--;
+
+        story.liked = false;
+
+    }
+
+    document.getElementById("storyLikes").textContent =
+        "❤️ " + story.likes;
+
+    localStorage.setItem("stories", JSON.stringify(stories));
+
+});
+
+        document.getElementById("storyCategory").textContent =
+            story.category;
+
+        document.getElementById("storyTitle").textContent =
+            story.title;
+
+        document.getElementById("storyAuthor").textContent =
+            story.author;
+
+        document.getElementById("storyTime").textContent =
+            story.time;
+
+        document.getElementById("storyViews").textContent =
+            "👁️ " + story.views;
+
+        document.getElementById("storyLikes").textContent =
+            "❤️ " + story.likes;
+
+        document.getElementById("storyComments").textContent =
+            "💬 " + story.comments;
+
+        document.getElementById("storyContent").textContent =
+            story.content;
+
+    }
+
+}
+
+// ===============================
+// Dynamic Navigation
+// ===============================
+
+const navActions = document.getElementById("navActions");
+
+if (navActions) {
+
+    const user = JSON.parse(localStorage.getItem("storynestUser"));
+
+    if (user) {
+
+        navActions.innerHTML = `
+
+            <span class="user-name">
+
+                👤 @${user.alias}
+
+            </span>
+
+            <button class="logout-btn" id="logoutBtn">
+
+                Logout
+
+            </button>
+
+            <button class="share-btn" id="shareStoryBtn">
+
+                + New Story
+
+            </button>
+
+        `;
+
+    }
+
+    else {
+
+        navActions.innerHTML = `
+
+            <a href="../auth/login.html"
+               class="login-btn">
+
+                Login
+
+            </a>
+
+            <a href="../auth/signup.html"
+               class="signup-btn">
+
+                Sign Up
+
+            </a>
+
+            <button class="share-btn"
+                    id="shareStoryBtn">
+
+                + New Story
+
+            </button>
+
+        `;
+
+    }
+
+}
+
+// ===============================
+// Logout
+// ===============================
+
+const logoutButton = document.getElementById("logoutBtn");
+
+if (logoutButton) {
+
+    logoutButton.addEventListener("click", function(){
+
+        localStorage.removeItem("storynestUser");
+
+        window.location.href = "../index.html";
+
+    });
+
+}
+
+// ===============================
+// New Story Button
+// ===============================
+
+const newStoryButton =
+    document.getElementById("shareStoryBtn");
+
+if (newStoryButton) {
+
+    newStoryButton.addEventListener("click", function(){
+
+        const user =
+            localStorage.getItem("storynestUser");
+
+        if(user){
+
+            window.location.href = "create-story.html";
+
+        }
+
+        else{
+
+            alert("Please login or create an account first.");
+
+            window.location.href = "../index.html";
+
+        }
+
+    });
+
+}

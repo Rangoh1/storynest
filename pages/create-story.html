@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Story - StoryNest</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        📖 StoryNest
+    </div>
+
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stories.html">Stories</a>
+        <a href="#">Categories</a>
+        <a href="#">Trending</a>
+    </nav>
+
+</header>
+
+<main class="auth-page">
+
+<div class="auth-card">
+
+<h1>Share Your Story</h1>
+
+<p>
+Your experiences may inspire someone else.
+Share them anonymously.
+</p>
+
+<form id="storyForm">
+
+<input
+    id="storyTitle"
+    type="text"
+    placeholder="Story Title"
+    required
+>
+
+<select id="storyCategory" required>
+
+    <option value="">Choose Category</option>
+
+    <option>Career</option>
+    <option>Relationships</option>
+    <option>Education</option>
+    <option>Health</option>
+    <option>Family</option>
+    <option>Business</option>
+    <option>Life Lessons</option>
+
+</select>
+
+<textarea
+    id="storyContent"
+    placeholder="Write your story here..."
+    rows="12"
+    required
+></textarea>
+
+<button type="submit">
+    Publish Story
+</button>
+
+</form>
+
+</div>
+
+</main>
+
+<script src="../js/auth.js"></script>
+
+</body>
+</html>
