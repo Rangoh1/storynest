@@ -421,27 +421,33 @@ if (navActions) {
 
     if (user) {
 
-        navActions.innerHTML = `
+       navActions.innerHTML = `
 
-            <span class="user-name">
+    <span class="user-name">
 
-                👤 @${user.alias}
+        👤 @${user.alias}
 
-            </span>
+    </span>
 
-            <button class="logout-btn" id="logoutBtn">
+    <button class="saved-btn" id="savedBtn">
 
-                Logout
+        🔖 Saved
 
-            </button>
+    </button>
 
-            <button class="share-btn" id="shareStoryBtn">
+    <button class="logout-btn" id="logoutBtn">
 
-                + New Story
+        Logout
 
-            </button>
+    </button>
 
-        `;
+    <button class="share-btn" id="shareStoryBtn">
+
+        + New Story
+
+    </button>
+
+`;
 
     }
 
@@ -482,6 +488,9 @@ if (navActions) {
 
 const logoutButton = document.getElementById("logoutBtn");
 
+const savedBtn =
+    document.getElementById("savedBtn");
+
 if (logoutButton) {
 
     logoutButton.addEventListener("click", function(){
@@ -489,6 +498,16 @@ if (logoutButton) {
         localStorage.removeItem("storynestUser");
 
         window.location.href = "../index.html";
+
+    });
+
+}
+
+if (savedBtn) {
+
+    savedBtn.addEventListener("click", function () {
+
+        window.location.href = "saved-stories.html";
 
     });
 
