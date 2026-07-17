@@ -198,7 +198,11 @@ if (storyForm) {
 
             comments: 0,
 
-            views: 0
+            views: 0,
+
+liked: false,
+
+saved: false
 
         };
 
@@ -340,22 +344,24 @@ likeButton.addEventListener("click", function () {
 
     if (!story.liked) {
 
-        story.likes++;
+    story.likes++;
 
-        story.liked = true;
+    story.liked = true;
 
-    } else {
+} else {
 
-        story.likes--;
+    story.likes--;
 
-        story.liked = false;
+    story.liked = false;
 
-    }
+}
 
-    document.getElementById("storyLikes").textContent =
-        "❤️ " + story.likes;
+const likeElement = document.getElementById("storyLikes");
 
-    localStorage.setItem("stories", JSON.stringify(stories));
+likeElement.textContent =
+    (story.liked ? "❤️ " : "🤍 ") + story.likes;
+
+localStorage.setItem("stories", JSON.stringify(stories));
 
 });
 
@@ -375,7 +381,23 @@ likeButton.addEventListener("click", function () {
             "👁️ " + story.views;
 
         document.getElementById("storyLikes").textContent =
-            "❤️ " + story.likes;
+    (story.liked ? "❤️ " : "🤍 ") + story.likes;
+
+    const saveButton = document.getElementById("saveStory");
+
+saveButton.textContent =
+    story.saved ? "✅ Saved" : "🔖 Save";
+
+    saveButton.addEventListener("click", function () {
+
+    story.saved = !story.saved;
+
+    saveButton.textContent =
+        story.saved ? "✅ Saved" : "🔖 Save";
+
+    localStorage.setItem("stories", JSON.stringify(stories));
+
+});
 
         document.getElementById("storyComments").textContent =
             "💬 " + story.comments;
@@ -501,5 +523,68 @@ if (newStoryButton) {
         }
 
     });
+
+}
+
+// ================================
+// Saved Stories Page
+// ================================
+
+const savedStoriesContainer =
+    document.getElementById("savedStoriesContainer");
+
+if (savedStoriesContainer) {
+
+    const stories =
+        JSON.parse(localStorage.getItem("stories")) || [];
+
+    const savedStories =
+        stories.filter(story => story.saved);
+
+    if (savedStories.length === 0) {
+
+        savedStoriesContainer.innerHTML = `
+
+            <p>You haven't saved any stories yet.</p>
+
+            <a href="home.html" class="read-link">
+                Explore Stories →
+            </a>
+
+        `;
+
+    } else {
+
+        savedStories.forEach(function(story) {
+
+            savedStoriesContainer.innerHTML += `
+
+                <div class="story-card">
+
+                    <div class="story-category">
+                        ${story.category}
+                    </div>
+
+                    <h2>${story.title}</h2>
+
+                    <p class="story-preview">
+                        ${story.content.substring(0, 150)}...
+                    </p>
+
+                    <a href="story.html"
+                       class="read-link"
+                       onclick="localStorage.setItem('selectedStory', ${stories.indexOf(story)})">
+
+                        Continue Reading →
+
+                    </a>
+
+                </div>
+
+            `;
+
+        });
+
+    }
 
 }

@@ -1255,3 +1255,37 @@ footer{
     transform:scale(1.05);
 
 }
+
+/* ===========================
+   Story Actions
+=========================== */
+
+.story-actions{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+.story-action{
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.story-action:hover{
+
+    color:#2563EB;
+
+    transform:scale(1.05);
+
+}
