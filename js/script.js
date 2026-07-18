@@ -20,25 +20,26 @@ if (trendingContainer) {
 
             trendingContainer.innerHTML += `
 
-                <div class="story-card"
-                  onclick="openTrendingStory(${stories.indexOf(story)})"
-                  style="cursor:pointer;">
+               <div class="story-card"
+     onclick="openTrendingStory(${stories.indexOf(story)})"
+     style="cursor:pointer;">
 
-                    <div class="story-category">
-                        ${story.category}
-                    </div>
+    <div class="trending-badge">
+        🔥 Trending
+    </div>
 
-                    <h3>${story.title}</h3>
+    <div class="story-category">
+        ${story.category}
+    </div>
 
-                    <p>
-                        ${story.content.substring(0,120)}...
-                    </p>
+    <h3>${story.title}</h3>
 
-                    <div class="story-footer">
-                        ❤️ ${story.likes}
-                    </div>
+    <p>
+        ${story.content.substring(0,120)}...
+    </p>
 
-                </div>
+
+</div>
 
             `;
 
