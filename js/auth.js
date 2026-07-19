@@ -194,6 +194,8 @@ const story = {
 
     author: currentUser.alias,
 
+    status: "public",
+
     time: "Just now",
 
     likes: 0,

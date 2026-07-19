@@ -14,11 +14,9 @@ if (currentUser) {
 document.getElementById("profileJoined").textContent =
     "Member of StoryNest";
 
-    document.getElementById("profileJoined").textContent =
-    "Member of StoryNest";
-
-    const myStories = stories.filter(story =>
-    story.author === currentUser.alias
+const myStories = stories.filter(story =>
+    story.author === currentUser.alias &&
+    story.status === "public"
 );
 
 document.getElementById("storyCount").textContent =
@@ -29,25 +27,52 @@ document.getElementById("storyCount").textContent =
 
 myStories.forEach(story => {
 
-    userStories.innerHTML += `
+  userStories.innerHTML += `
 
-        <div class="user-story">
+    <div class="user-story">
 
-            <h3>${story.title}</h3>
+        <h3>${story.title}</h3>
 
-            <p>${story.category}</p>
+        <p>${story.category}</p>
 
-            <small>
+        <small>
 
-                ❤️ ${story.likes}
-                &nbsp;&nbsp;
-                👁️ ${story.views}
+            ❤️ ${story.likes}
+            &nbsp;&nbsp;
+            👁️ ${story.views}
 
-            </small>
+        </small>
 
-        </div>
+        <div class="story-actions">
 
-    `;
+    <button
+        class="edit-story-btn">
+
+        ✏️ Edit
+
+    </button>
+
+    <button
+        class="journal-story-btn"
+        onclick="moveToJournal(${stories.indexOf(story)})">
+
+        📔 Journal
+
+    </button>
+
+    <button
+        class="delete-story-btn"
+        onclick="deleteStory(${stories.indexOf(story)})">
+
+        🗑 Delete
+
+    </button>
+
+</div>
+
+    </div>
+
+`;
 
 });
 
@@ -76,3 +101,19 @@ myStories.forEach(story => {
 
 document.getElementById("commentsCount").textContent =
     totalComments;
+
+ function moveToJournal(index){
+
+    const stories =
+        JSON.parse(localStorage.getItem("stories")) || [];
+
+    stories[index].status = "journal";
+
+    localStorage.setItem(
+        "stories",
+        JSON.stringify(stories)
+    );
+
+    location.reload();
+
+}
