@@ -104,3 +104,27 @@ function deleteStory(index){
     location.reload();
 
 }
+
+function deleteStory(index){
+
+    const confirmed = confirm(
+        "Delete this story permanently?\n\nThis action cannot be undone."
+    );
+
+    if (!confirmed){
+        return;
+    }
+
+    const stories =
+        JSON.parse(localStorage.getItem("stories")) || [];
+
+    stories.splice(index, 1);
+
+    localStorage.setItem(
+        "stories",
+        JSON.stringify(stories)
+    );
+
+    location.reload();
+
+}

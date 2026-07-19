@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Story | StoryNest</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-card">
+
+        <h1>✏️ Edit Story</h1>
+
+        <form id="editStoryForm">
+
+            <input
+                type="text"
+                id="editTitle"
+                placeholder="Story Title"
+                required>
+
+            <select
+                id="editCategory"
+                required>
+
+                <option value="">Choose Category</option>
+                <option>Love</option>
+                <option>Business</option>
+                <option>Family</option>
+                <option>Friendship</option>
+                <option>Education</option>
+                <option>Life</option>
+
+            </select>
+
+            <textarea
+                id="editContent"
+                rows="10"
+                placeholder="Your story..."
+                required></textarea>
+
+            <button
+                type="submit"
+                class="share-btn">
+
+                💾 Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <script src="../js/edit-story.js"></script>
+
+</body>
+
+</html>

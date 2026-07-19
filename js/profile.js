@@ -45,12 +45,13 @@ myStories.forEach(story => {
 
         <div class="story-actions">
 
-    <button
-        class="edit-story-btn">
+        <button
+    class="edit-story-btn"
+    onclick="editStory(${stories.indexOf(story)})">
 
-        ✏️ Edit
+    ✏️ Edit
 
-    </button>
+</button>
 
     <button
         class="journal-story-btn"
@@ -115,5 +116,17 @@ document.getElementById("commentsCount").textContent =
     );
 
     location.reload();
+
+}
+
+function editStory(index){
+
+    localStorage.setItem(
+        "editingStory",
+        index
+    );
+
+    window.location.href =
+        "../pages/edit-story.html";
 
 }
