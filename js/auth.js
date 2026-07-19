@@ -184,27 +184,29 @@ if (storyForm) {
 
         const content = document.getElementById("storyContent").value.trim();
 
-        const story = {
+        const currentUser = JSON.parse(localStorage.getItem("storynestUser"));
 
-            title,
-            category,
-            content,
+const story = {
 
-            author: "@You",
+    title,
+    category,
+    content,
 
-            time: "Just now",
+    author: currentUser.alias,
 
-            likes: 0,
+    time: "Just now",
 
-            comments: 0,
+    likes: 0,
 
-            views: 0,
+    comments: 0,
 
-liked: false,
+    views: 0,
 
-saved: false
+    liked: false,
 
-        };
+    saved: false
+
+};
 
         // Get existing stories
 let stories = JSON.parse(localStorage.getItem("stories")) || [];

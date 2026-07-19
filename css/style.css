@@ -1579,3 +1579,97 @@ footer{
     line-height:1.6;
 
 }
+
+.reply-btn{
+
+    margin-top:12px;
+
+    background:none;
+
+    border:none;
+
+    color:#2563EB;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.reply-btn:hover{
+
+    text-decoration:underline;
+
+}
+
+.send-reply-btn{
+
+    margin-top:10px;
+
+    background:#2563EB;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 16px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+.send-reply-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.comment-card textarea{
+
+    width:100%;
+
+    min-height:80px;
+
+    margin-top:15px;
+
+    padding:10px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    resize:vertical;
+
+}
+
+.reply-card{
+
+    margin-top:15px;
+
+    margin-left:40px;
+
+    padding:12px;
+
+    background:#f3f4f6;
+
+    border-left:4px solid #2563EB;
+
+    border-radius:8px;
+
+}
+
+.reply-card strong{
+
+    color:#2563EB;
+
+}
+
+.reply-card p{
+
+    margin-top:8px;
+
+}
