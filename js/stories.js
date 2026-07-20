@@ -11,25 +11,37 @@ const publicStories = stories.filter(story =>
     story.status === "public"
 );
 
-function displayStories(storiesToDisplay){
+function displayStories(storiesToDisplay) {
 
-    if(storiesToDisplay.length === 0){
+    storiesGrid.innerHTML = "";
+
+    if (storiesToDisplay.length === 0) {
+
+        const searchText = searchBox.value.trim();
 
         storiesGrid.innerHTML = `
-            <p>No stories found.</p>
+            <div class="no-results">
+
+                <h2>🔍</h2>
+
+                <h3>No stories matched</h3>
+
+                <p>"${searchText}"</p>
+
+                <p>Try another keyword or check your spelling.</p>
+
+            </div>
         `;
 
         return;
 
     }
 
-    storiesGrid.innerHTML = "";
-
     storiesToDisplay.forEach(story => {
 
         const preview =
             story.content.length > 120
-                ? story.content.substring(0,120) + "..."
+                ? story.content.substring(0, 120) + "..."
                 : story.content;
 
         const commentCount =
@@ -84,7 +96,7 @@ function displayStories(storiesToDisplay){
 
 displayStories(publicStories);
 
-function openStory(index){
+function openStory(index) {
 
     localStorage.setItem(
         "selectedStory",
@@ -93,8 +105,7 @@ function openStory(index){
 
 }
 
-searchBox.addEventListener("input", function(){
-
+searchBox.addEventListener("input", function () {
 
     const searchText =
         searchBox.value.toLowerCase().trim();

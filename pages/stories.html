@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Stories - StoryNest</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet"
+          href="../css/style.css">
+
 </head>
 
 <body>
 
-  <header class="navbar">
+    <header class="navbar">
 
         <div class="logo">
             📖 StoryNest
@@ -18,9 +25,9 @@
 
         <nav>
 
-            <a href="#">Home</a>
+            <a href="../index.html">Home</a>
 
-            <a href="#">Stories</a>
+            <a href="stories.html">Stories</a>
 
             <a href="#">Categories</a>
 
@@ -36,57 +43,66 @@
 
     </header>
 
-<main>
+    <main>
 
-    <section class="stories-hero">
+        <section class="stories-hero">
 
-        <h1>Stories</h1>
+            <h1>Stories</h1>
 
-        <p>
-            Discover real experiences shared by people from around the world.
-        </p>
+            <p>
+                Discover real experiences shared by people from around the world.
+            </p>
 
-        <input
-    type="text"
-    id="searchBox"
-    placeholder="Search stories..."
-    class="search-box">
-    
+            <input
+                type="text"
+                id="searchBox"
+                class="search-box"
+                placeholder="Search stories...">
+
             <div class="category-buttons">
 
-    <button class="category active">All</button>
+                <button class="category active">
+                    All
+                </button>
 
-    <button class="category">Relationships</button>
+                <button class="category">
+                    Relationships
+                </button>
 
-    <button class="category">Family</button>
+                <button class="category">
+                    Family
+                </button>
 
-    <button class="category">Career</button>
+                <button class="category">
+                    Career
+                </button>
 
-    <button class="category">Money</button>
+                <button class="category">
+                    Money
+                </button>
 
-    <button class="category">Personal Growth</button>
+                <button class="category">
+                    Personal Growth
+                </button>
 
-</div>
+            </div>
 
-    </section>
+        </section>
 
-<section class="stories-list">
+        <section class="stories-list">
 
-<section class="stories-list">
+            <div
+                class="stories-grid"
+                id="storiesGrid">
 
-    <div
-        class="stories-grid"
-        id="storiesGrid">
+            </div>
 
-    </div>
+        </section>
 
-</section>
+    </main>
 
-</section>
-
-</main>
-
-<script src="../js/stories.js"></script>
+    <script src="../js/stories.js"></script>
 
 </body>
+
 </html>
