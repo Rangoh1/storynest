@@ -15,26 +15,65 @@
 
 </head>
 
-<body class="auth-page">
+<body>
 
-    <div class="auth-card">
+    <!-- ===============================
+         Navigation Bar
+    ================================ -->
 
-        <h1>📔 My Journal</h1>
+    <header class="navbar">
 
-        <p>
-            Your private stories are stored here.
-            Only you can see them.
-        </p>
+        <a href="home.html" class="logo">
+            📖 StoryNest
+        </a>
 
-        <div id="journalStories">
+        <nav class="nav-links">
 
-            <p>No journal stories yet.</p>
+            <a href="home.html">Home</a>
+
+            <a href="stories.html">Stories</a>
+
+            <a href="categories.html">Categories</a>
+
+            <a href="#">Trending</a>
+
+        </nav>
+
+        <div id="navActions" class="nav-actions"></div>
+
+    </header>
+
+    <!-- ===============================
+         Journal Content
+    ================================ -->
+
+    <main>
+
+        <div class="journal-container">
+
+            <h1>📔 My Journal</h1>
+
+            <p>
+                Your private stories are stored here.
+                Only you can see them.
+            </p>
+
+            <div id="journalStories">
+
+                <p>No journal stories yet.</p>
+
+            </div>
 
         </div>
 
-    </div>
+    </main>
+
+    <!-- ===============================
+         JavaScript
+    ================================ -->
 
     <script src="../js/journal.js"></script>
+    <script src="../js/navigation.js"></script>
 
 </body>
 

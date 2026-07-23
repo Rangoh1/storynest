@@ -1,15 +1,123 @@
-const stories =
-    JSON.parse(localStorage.getItem("stories")) || [];
+// ===============================
+// Stories Page
+// ===============================
 
-const searchBox =
-    document.getElementById("searchBox");
+const stories = getStories();
 
-const storiesGrid =
-    document.getElementById("storiesGrid");
+const searchBox = document.getElementById("searchBox");
+
+const storiesGrid = document.getElementById("storiesGrid");
+
+const categoryFilter = document.getElementById("categoryFilter");
+
+const sortFilter = document.getElementById("sortFilter");
 
 const publicStories = stories.filter(story =>
     story.status === "public"
 );
+
+
+// ===============================
+// Load Categories
+// ===============================
+
+function loadCategoryOptions() {
+
+    categoryFilter.innerHTML = `
+        <option value="All">All</option>
+    `;
+
+    categories.forEach(category => {
+
+        categoryFilter.innerHTML += `
+            <option value="${category.id}">
+                ${category.name}
+            </option>
+        `;
+
+    });
+
+}
+
+
+// ===============================
+// Filter Stories
+// ===============================
+
+function filterStories() {
+
+    const searchText =
+        searchBox.value.toLowerCase().trim();
+
+    const selectedCategory =
+        categoryFilter.value;
+
+    let filteredStories = [...publicStories];
+
+    // Category Filter
+
+    if (selectedCategory !== "All") {
+
+        filteredStories = filteredStories.filter(story =>
+
+            story.category === selectedCategory
+
+        );
+
+    }
+
+    // Search Filter
+
+    filteredStories = filteredStories.filter(story =>
+
+        story.title.toLowerCase().includes(searchText) ||
+
+        story.content.toLowerCase().includes(searchText) ||
+
+        story.author.toLowerCase().includes(searchText)
+
+    );
+
+    // ===============================
+    // Sorting
+    // ===============================
+
+    switch (sortFilter.value) {
+
+        case "oldest":
+
+            filteredStories.reverse();
+
+            break;
+
+        case "likes":
+
+            filteredStories.sort((a, b) => b.likes - a.likes);
+
+            break;
+
+        case "views":
+
+            filteredStories.sort((a, b) => b.views - a.views);
+
+            break;
+
+        default:
+
+            // Newest (default order)
+
+            break;
+
+    }
+
+    displayStories(filteredStories);
+
+}
+
+
+// ===============================
+// Display Stories
+// ===============================
 
 function displayStories(storiesToDisplay) {
 
@@ -17,20 +125,18 @@ function displayStories(storiesToDisplay) {
 
     if (storiesToDisplay.length === 0) {
 
-        const searchText = searchBox.value.trim();
-
         storiesGrid.innerHTML = `
+
             <div class="no-results">
 
                 <h2>🔍</h2>
 
-                <h3>No stories matched</h3>
+                <h3>No stories found</h3>
 
-                <p>"${searchText}"</p>
-
-                <p>Try another keyword or check your spelling.</p>
+                <p>Try another search or category.</p>
 
             </div>
+
         `;
 
         return;
@@ -56,15 +162,21 @@ function displayStories(storiesToDisplay) {
                 <h2>${story.title}</h2>
 
                 <p class="author">
+
                     👤 @${story.author}
+
                 </p>
 
                 <p class="story-category">
-                    🏷 ${story.category}
+
+                    🏷 ${getCategoryName(story.category)}
+
                 </p>
 
                 <p class="excerpt">
+
                     ${preview}
+
                 </p>
 
                 <div class="story-footer">
@@ -94,35 +206,28 @@ function displayStories(storiesToDisplay) {
 
 }
 
-displayStories(publicStories);
+
+// ===============================
+// Open Story
+// ===============================
 
 function openStory(index) {
 
-    localStorage.setItem(
-        "selectedStory",
-        index
-    );
+    setSelectedStoryIndex(index);
 
 }
 
-searchBox.addEventListener("input", function () {
 
-    const searchText =
-        searchBox.value.toLowerCase().trim();
+// ===============================
+// Events
+// ===============================
 
-    const filteredStories =
-        publicStories.filter(story =>
+loadCategoryOptions();
 
-            story.title.toLowerCase().includes(searchText) ||
+filterStories();
 
-            story.content.toLowerCase().includes(searchText) ||
+searchBox.addEventListener("input", filterStories);
 
-            story.category.toLowerCase().includes(searchText) ||
+categoryFilter.addEventListener("change", filterStories);
 
-            story.author.toLowerCase().includes(searchText)
-
-        );
-
-    displayStories(filteredStories);
-
-});
+sortFilter.addEventListener("change", filterStories);

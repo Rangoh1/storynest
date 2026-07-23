@@ -359,7 +359,7 @@ footer{
 
     text-align:center;
 
-    padding:80px 20px 50px;
+    padding:50px 20px 20px;
 
 }
 
@@ -549,7 +549,7 @@ footer{
     display:grid;
     grid-template-columns:repeat(2, 1fr);
     gap:30px;
-    margin-top:40px;
+    margin-top:10px;
 }
 
 /* STORY PAGE */
@@ -1859,9 +1859,39 @@ footer{
 
 }
 
+.journal-container{
+
+    width:95%;
+
+    max-width:1400px;
+
+    margin:40px auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+}
+
 /* ===========================
    Journal
 =========================== */
+
+#journalStories{
+
+    display:grid;
+
+    grid-template-columns:repeat(3, 1fr);
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
 
 .journal-story{
 
@@ -1869,11 +1899,29 @@ footer{
 
     padding:20px;
 
-    margin-top:20px;
+    border-radius:12px;
 
-    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
 
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+@media (max-width: 1000px) {
+
+    #journalStories {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    #journalStories {
+
+        grid-template-columns: 1fr;
+
+    }
 
 }
 
@@ -1980,5 +2028,106 @@ footer{
     margin:8px 0;
 
     font-size:17px;
+
+}
+
+/* ===============================
+   Story Filters
+================================ */
+.filters-card{
+
+    max-width:650px;
+
+    margin:20px auto 10px;
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:16px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+
+}
+
+.search-container{
+
+    margin-bottom:20px;
+
+}
+
+.search-container input{
+
+    width:100%;
+
+    padding:16px 20px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.story-filters{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.filter-group{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.filter-group label{
+
+    font-weight:600;
+
+    color:#444;
+
+}
+
+.filter-group select{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    background:white;
+
+    cursor:pointer;
+
+}
+
+@media(max-width:700px){
+
+    .story-filters{
+
+        flex-direction:column;
+
+    }
 
 }

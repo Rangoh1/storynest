@@ -53,39 +53,80 @@
                 Discover real experiences shared by people from around the world.
             </p>
 
-            <input
-                type="text"
-                id="searchBox"
-                class="search-box"
-                placeholder="Search stories...">
+<div class="filters-card">
 
-            <div class="category-buttons">
+    <div class="search-container">
 
-                <button class="category active">
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="🔍 Search stories...">
+
+    </div>
+
+    <div class="story-filters">
+
+        <div class="filter-group">
+
+            <label for="categoryFilter">
+
+                Category
+
+            </label>
+
+            <select id="categoryFilter">
+
+                <option value="All">
+
                     All
-                </button>
 
-                <button class="category">
-                    Relationships
-                </button>
+                </option>
 
-                <button class="category">
-                    Family
-                </button>
+            </select>
 
-                <button class="category">
-                    Career
-                </button>
+        </div>
 
-                <button class="category">
-                    Money
-                </button>
+        <div class="filter-group">
 
-                <button class="category">
-                    Personal Growth
-                </button>
+            <label for="sortFilter">
 
-            </div>
+                Sort By
+
+            </label>
+
+            <select id="sortFilter">
+
+                <option value="newest">
+
+                    Newest
+
+                </option>
+
+                <option value="oldest">
+
+                    Oldest
+
+                </option>
+
+                <option value="likes">
+
+                    Most Liked
+
+                </option>
+
+                <option value="views">
+
+                    Most Viewed
+
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
 
         </section>
 
@@ -101,7 +142,10 @@
 
     </main>
 
-    <script src="../js/stories.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/categories.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/stories.js"></script>
 
 </body>
 
